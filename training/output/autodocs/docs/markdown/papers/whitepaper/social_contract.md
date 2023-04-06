@@ -1,0 +1,27 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/papers/whitepaper/social_contract.tex)
+
+The code above is a section of the Ergo project's documentation that outlines the main principles that should be followed in the Ergo protocol. These principles are referred to as "Ergo's Social Contract" and are intended to guide the development and use of the protocol.
+
+The first principle is "Decentralization First." This means that the Ergo protocol should be as decentralized as possible, with no parties whose absence or malicious behavior could affect the security of the network. If any such parties do appear, the community should work to decrease their impact level.
+
+The second principle is "Created for Regular People." Ergo is intended to be a platform for ordinary people, and their interests should not be infringed upon in favor of larger parties. This means that centralization of mining should be prevented, and regular people should be able to participate in the protocol by running a full node and mining blocks.
+
+The third principle is "Platform for Contractual Money." Ergo is designed to be a base layer for applications that will be built on top of it. Its main focus is to provide an efficient, secure, and easy way to implement financial contracts.
+
+The fourth principle is "Long-term Focus." All aspects of Ergo development should be focused on a long-term perspective. Ergo should be able to survive for centuries without expected hard forks, software or hardware improvements, or other unpredictable changes. Applications built on top of Ergo should also be able to survive in the long term.
+
+The fifth principle is "Permissionless and Open." The Ergo protocol should allow anyone to join the network and participate in the protocol without any preliminary actions. No bailouts, blacklists, or other forms of discrimination should be possible on the core level of the Ergo protocol. Application developers are free to implement any logic they want, taking responsibility for the ethics and legality of their application.
+
+Overall, this section of the Ergo documentation provides a high-level overview of the principles that should guide the development and use of the Ergo protocol. These principles emphasize decentralization, accessibility, and long-term sustainability, and are intended to ensure that Ergo remains a platform for ordinary people to use and build upon.
+## Questions: 
+ 1. What is the purpose of the Ergo protocol?
+    
+    The purpose of the Ergo protocol is to provide an efficient, secure, and easy way to implement financial contracts as a base layer for applications that will be built on top of it.
+
+2. What are the main principles that should be followed in Ergo?
+    
+    The main principles that should be followed in Ergo are decentralization, being created for regular people, being a platform for contractual money, having a long-term focus, and being permissionless and open.
+
+3. How should the community handle intentional violation of Ergo's social contract?
+    
+    If there is an intentional violation of Ergo's social contract, the resulting protocol should not be called Ergo. The community should consider ways to decrease the impact level of any parties whose absence or malicious behavior may affect the security of the network.

@@ -1,0 +1,27 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/target/streams/_global/assemblyOption/_global/streams/assembly/56690908446da196b01dd7f76de6aa58ba049f63_ec2544ab27e110d2d431bdad7d538ed509b21e62_da39a3ee5e6b4b0d3255bfef95601890afd80709/META-INF/NOTICE_commons-math3-3.2.txt)
+
+This file contains information about the various classes and packages in the ergo project that include software developed by third-party sources. The purpose of this file is to provide attribution and acknowledge the contributions of these external sources to the ergo project. 
+
+The file includes information about the following classes and packages: 
+- Erf class: This class includes an implementation of the inverse error function based on CUDA code developed by Mike Giles. 
+- BracketFinder and PowellOptimizer classes: These classes are based on Python code in the SciPy library developed by Travis E. Oliphant. 
+- LinearConstraint, LinearObjectiveFunction, LinearOptimizer, RelationShip, SimplexSolver, and SimplexTableau classes: These classes include software developed by Benjamin McCann and distributed by Google Inc. 
+- LevenbergMarquardtOptimizer class: This class includes software translated from Fortran routines in the Minpack package developed by the University of Chicago. 
+- GraggBulirschStoerIntegrator class: This class includes software translated from the odex Fortran routine developed by E. Hairer and G. Wanner. 
+- EigenDecompositionImpl class: This class includes software translated from LAPACK Fortran routines developed by the University of Tennessee. 
+- MersenneTwister class: This class includes software translated from the Mersenne-Twister generator written in C by Makoto Matsumoto and Takuji Nishimura. 
+- LocalizedFormatsTest class: This class is an adapted version of the OrekitMessagesTest class from the orekit library. 
+- HermiteInterpolator class: This class has been imported from the orekit library. 
+
+The file also includes information about the creation of the package "o.a.c.m.analysis.integration.gauss," which was inspired by original code donated by Sébastien Brisard. 
+
+Overall, this file serves as a record of the various external sources that have contributed to the ergo project. It provides attribution and acknowledges the contributions of these sources to the project.
+## Questions: 
+ 1. What is the purpose of the ergo project?
+- The code documentation expert does not provide any information about the purpose of the ergo project.
+
+2. What external libraries or packages are used in this code?
+- The code documentation expert mentions several external libraries or packages used in this code, including Apache Commons Math, CUDA, SciPy, Minpack, odex Fortran, LAPACK Fortran, and Mersenne-Twister generator.
+
+3. What are the copyright and license details for the external code used in this project?
+- The code documentation expert provides copyright and license details for the external code used in this project, which are included in the LICENSE.txt file.

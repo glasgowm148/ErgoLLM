@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/modifiers/history/ADProofs.scala)
+
+The `ADProofs` class in the `ergo` project is used to verify a set of box (outputs) operations on authenticated UTXO set by using the proof. The class is a NonHeaderBlockSection, which is a part of the `modifiers` package in the `history` package. The class takes three parameters: `headerId`, `proofBytes`, and `sizeOpt`. The `headerId` is the ID of the header of the block that the proof is for. The `proofBytes` is the serialized proof of the authenticated UTXO set. The `sizeOpt` is the size of the proof. 
+
+The `ADProofs` class has a `verify` method that takes three parameters: `changes`, `previousHash`, and `expectedHash`. The `changes` parameter is an ordered sequence of box operations (remove/insert) to check against a tree with known. The `previousHash` parameter is the hash (from the previous block) to apply the proof to. The `expectedHash` parameter is the expected (declared by miner) hash. A hash after applying proof must be the same. The `verify` method returns a `Try[Seq[ADValue]]`, which is a sequence of ADValues that are the old values of the boxes that were changed.
+
+The `ADProofs` object has two implicit values: `jsonEncoder` and `jsonDecoder`. The `jsonEncoder` encodes an `ADProofs` object to JSON format. The `jsonDecoder` decodes a JSON object to an `ADProofs` object. 
+
+The `ADProofs` object also has two values: `modifierTypeId` and `KL`. The `modifierTypeId` is the ID of the `ADProofs` modifier. The `KL` is the key length of the authenticated UTXO set. 
+
+The `ADProofsSerializer` object is a ScorexSerializer for the `ADProofs` class. It serializes an `ADProofs` object to bytes and parses bytes to an `ADProofs` object.
+## Questions: 
+ 1. What is the purpose of the `ADProofs` class?
+- The `ADProofs` class represents a set of authenticated data proofs for a non-header block section in the Ergo blockchain.
+
+2. What is the `verify` method used for?
+- The `verify` method is used to verify a set of box operations on an authenticated UTXO set by using the proof wrapped by the `ADProofs` instance.
+
+3. What is the purpose of the `ADProofsSerializer` object?
+- The `ADProofsSerializer` object provides serialization and deserialization methods for instances of the `ADProofs` class.

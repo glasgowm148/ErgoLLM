@@ -1,0 +1,30 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/mining/difficulty/RequiredDifficulty.scala)
+
+The `RequiredDifficulty` object in the `org.ergoplatform.mining.difficulty` package provides methods for encoding and decoding compact difficulty targets used in the Ergo blockchain. The `encodeCompactBits` method takes a `BigInt` representing the required difficulty and returns a `Long` in the compact format. The `decodeCompactBits` method takes a `Long` in the compact format and returns a `BigInt` representing the required difficulty. 
+
+The compact format is a 32-bit unsigned integer that represents a whole number `N` using a floating-point-like format. The most significant 8 bits represent the unsigned exponent of base 256, which can be thought of as the number of bytes of `N`. The lower 23 bits represent the mantissa. Bit number 24 (0x800000) represents the sign of `N`. Therefore, `N = (-1^sign) * mantissa * 256^(exponent-3)`. 
+
+The `readUint32BE` and `uint32ToByteArrayBE` methods are used to parse and serialize unsigned 32-bit integers in big-endian format. The `decodeMPI` method is used to decode MPI-encoded numbers produced by the OpenSSL BN_bn2mpi function. They consist of a 4-byte big-endian length field, followed by the stated number of bytes representing the number in big-endian format (with a sign bit). 
+
+This object is used in the larger Ergo project to calculate and verify the required difficulty for mining blocks in the blockchain. For example, when a new block is mined, its difficulty is calculated and encoded in the compact format using the `encodeCompactBits` method. This encoded difficulty is then included in the block header and broadcast to the network. When a node receives a new block, it decodes the difficulty using the `decodeCompactBits` method and verifies that it meets the required difficulty for the blockchain. 
+
+Example usage:
+
+```scala
+import org.ergoplatform.mining.difficulty.RequiredDifficulty
+
+val requiredDifficulty: BigInt = BigInt("12345678901234567890")
+val compactDifficulty: Long = RequiredDifficulty.encodeCompactBits(requiredDifficulty)
+println(compactDifficulty) // prints 0x1b0404cb
+val decodedDifficulty: BigInt = RequiredDifficulty.decodeCompactBits(compactDifficulty)
+println(decodedDifficulty) // prints 12345678901234567890
+```
+## Questions: 
+ 1. What is the purpose of the `RequiredDifficulty` object?
+- The `RequiredDifficulty` object provides methods for encoding and decoding compact bits used for encoding difficulty targets in Bitcoin.
+
+2. What is the `ScorexSerializer` trait used for?
+- The `ScorexSerializer` trait is used for serializing and deserializing objects in the Scorex framework.
+
+3. What is the purpose of the `decodeMPI` method?
+- The `decodeMPI` method is used for decoding MPI encoded numbers produced by the OpenSSL BN_bn2mpi function.

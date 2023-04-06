@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/ergo-wallet/src/main/scala/org/ergoplatform/wallet/secrets/ExtendedKey.scala)
+
+The code defines a trait `ExtendedKey` that is used to represent extended private and public keys in the context of Bitcoin Improvement Proposal 32 (BIP32). BIP32 defines a hierarchical deterministic wallet structure that allows for the generation of a large number of public and private keys from a single seed value. 
+
+The trait defines the basic functionality that is common to both extended private and public keys. Each extended key consists of a normal private or public key and a chain code that is identical for corresponding private and public keys. The chain code is an extra 256 bits of entropy that is used to extend the key. The trait defines the representation of an extended private key as (k, c), where k is the normal private key and c is the chain code. Similarly, an extended public key is represented as (K, c), where K is the point(k) and c is the chain code.
+
+Each extended key has 2^31 normal child keys and 2^31 hardened child keys. Each child key has an index, and the normal child keys use indices 0 through 2^31-1, while the hardened child keys use indices 2^31 through 2^32-1. The trait defines a method `child(idx: Int)` that given a parent extended key and an index `idx`, computes the corresponding child extended key. The algorithm to do so depends on whether the child is a hardened key or not and whether we're talking about private or public keys. The implementation of this method is left to the derived classes.
+
+The trait also defines a method `derive(upPath: DerivationPath)` that is used to derive a child key from a parent key using a derivation path. The method checks that the derivation path is compatible with the current path and then iteratively computes the child key using the `child` method. The `selfReflection` method returns a subtype reference to the derived class.
+
+Overall, the `ExtendedKey` trait provides a common interface for working with extended private and public keys in the context of BIP32. It defines the basic functionality that is common to both types of keys and allows for the derivation of child keys from a parent key using a derivation path. The derived classes implement the specific algorithms for computing child keys based on the type of key and whether it is a hardened key or not.
+## Questions: 
+ 1. What is the purpose of the `ExtendedKey` trait?
+- The `ExtendedKey` trait defines a set of methods and properties that must be implemented by classes that represent extended private and public keys.
+
+2. What is the `child` method used for?
+- The `child` method is used to compute the corresponding child extended key given a parent extended key and an index `idx`. The algorithm to do so depends on whether the child is a hardened key or not, and whether we're talking about private or public keys.
+
+3. What is the `derive` method used for?
+- The `derive` method is used to derive a new extended key from an existing one, given a derivation path. The method checks that the derivation path is compatible with the existing key, and then applies the path to the key to derive the new key.

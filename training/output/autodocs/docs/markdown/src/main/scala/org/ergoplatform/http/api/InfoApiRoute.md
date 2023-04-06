@@ -1,0 +1,22 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/http/api/InfoApiRoute.scala)
+
+This code defines an API route for the Ergo platform that corresponds to the `/info` path. The purpose of this route is to provide information about the Ergo node to clients that request it. 
+
+The `InfoApiRoute` class takes two parameters: `statsCollector`, which is an `ActorRef` that is used to collect statistics about the Ergo node, and `settings`, which is an instance of `RESTApiSettings` that contains settings for the REST API. The `context` parameter is an `ActorRefFactory` that is used to create actors.
+
+The `InfoApiRoute` class extends the `ErgoBaseApiRoute` trait, which provides some common functionality for Ergo API routes. The `route` method of the `InfoApiRoute` class defines the actual route that clients can use to access information about the Ergo node. 
+
+The route is defined using the Akka HTTP DSL. It matches requests to the `/info` path using the `path` directive and the `get` method. When a request is received, the route creates a JSON object containing the current time and sends a message to the `statsCollector` actor to get information about the Ergo node. The response from the `statsCollector` actor is then merged with the time JSON object and returned to the client as an `ApiResponse`.
+
+This API route can be used by clients to get information about the Ergo node, such as its version, uptime, and memory usage. For example, a client could send an HTTP GET request to `http://localhost:9052/info` to get information about the Ergo node. The response would be a JSON object containing the requested information. 
+
+Overall, this code provides a simple but useful API route for the Ergo platform that can be used by clients to get information about the Ergo node.
+## Questions: 
+ 1. What is the purpose of this code file?
+- This code file contains an API route for the `/info` path.
+
+2. What dependencies does this code file have?
+- This code file depends on Akka, Circe, and Scorex libraries.
+
+3. What does the `GetNodeInfo` message do?
+- The `GetNodeInfo` message is sent to the `statsCollector` actor to retrieve information about the Ergo node, which is then returned as a JSON response.

@@ -1,0 +1,22 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/ergo-wallet/src/main/scala/org/ergoplatform/wallet/secrets/SecretKey.scala)
+
+The code defines traits and classes related to secret keys used in Sigma protocols. Sigma protocols are used in the Ergo project to enable secure and private transactions. 
+
+The `SecretKey` trait defines a basic interface for secret data, encapsulating a corresponding private input for a Sigma protocol. The `privateInput` method returns the private input of a Sigma protocol. 
+
+The `PrimitiveSecretKey` trait is a basic trait for a secret that does not have a derivation scheme. It has a companion object that provides an `apply` method that takes a `SigmaProtocolPrivateInput` and returns a `PrimitiveSecretKey`. The `apply` method pattern matches on the type of the input and returns either a `DlogSecretKey` or a `DhtSecretKey`. 
+
+The `DlogSecretKey` case class represents the secret exponent of a group element, i.e. a secret `w` such that `h = g^^w`, where `g` is a group generator and `h` is a public key. It takes a `DLogProverInput` as its private input. 
+
+The `DhtSecretKey` case class represents the secret exponent of a Diffie-Hellman tuple, i.e. a secret `w` such that `u = g^^w` and `v = h^^w`, where `g` and `h` are group generators and `(g,h,u,v)` is a public input (public key). It takes a `DiffieHellmanTupleProverInput` as its private input. 
+
+These traits and classes are used in the larger Ergo project to enable secure and private transactions. For example, when a user wants to send a transaction, they create a Sigma protocol that proves they have the authority to spend the coins they are sending. The private inputs for this protocol are stored as secret keys, which are instances of the `SecretKey` trait. The `DlogSecretKey` and `DhtSecretKey` classes represent specific types of secret keys that can be used in Sigma protocols. The `PrimitiveSecretKey` trait provides a basic interface for secret keys that do not have a derivation scheme. Overall, these classes and traits are essential for enabling secure and private transactions in the Ergo project.
+## Questions: 
+ 1. What is the purpose of the `SecretKey` trait and what does it encapsulate?
+- The `SecretKey` trait is a basic trait for secret data and encapsulates a corresponding private input for a Sigma protocol.
+
+2. What is the purpose of the `PrimitiveSecretKey` trait and how is it used?
+- The `PrimitiveSecretKey` trait is a basic trait for a secret which does not have a derivation scheme. It is used to apply a Sigma protocol private input to either a `DlogSecretKey` or a `DhtSecretKey`.
+
+3. What are `DlogSecretKey` and `DhtSecretKey` and how do they differ?
+- `DlogSecretKey` represents the secret exponent of a group element, while `DhtSecretKey` represents the secret exponent of a Diffie-Hellman tuple. The difference is that `DhtSecretKey` has two group generators and two public keys, while `DlogSecretKey` only has one group generator and one public key.

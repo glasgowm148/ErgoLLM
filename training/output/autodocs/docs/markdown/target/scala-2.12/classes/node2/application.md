@@ -1,0 +1,22 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/target/scala-2.12/classes/node2/application.conf)
+
+The code above is a configuration file for a local node in the Ergo project. The purpose of this file is to set up the node for testing purposes. The file contains various settings for the node, wallet, and chain.
+
+The `directory` setting specifies the directory where the node will store its data. The `node` section contains settings related to the node view holder regime, which is responsible for processing transactions and blocks. The `offlineGeneration` setting is set to false, which means that the node will not generate blocks while offline. The `mining` setting is set to true, which means that the node will mine blocks. The `useExternalMiner` setting is set to false, which means that the node will use its internal miner. The `internalMinerPollingInterval` setting specifies the interval at which the internal miner will poll for new work.
+
+The `wallet` section contains settings related to the wallet used for testing. The `testMnemonic` setting specifies the mnemonic seed used in the wallet for tests. The `testKeysQty` setting specifies the number of keys to be generated for tests.
+
+The `chain` section contains settings related to the chain. The `monetary` section contains settings related to the monetary policy of the chain. The `minerRewardDelay` setting is reduced to 1 block reward delay for faster testing. The `genesisStateDigestHex` setting specifies the Base16 representation of the genesis state roothash.
+
+The `scorex` section contains settings related to the Scorex framework used in the Ergo project. The `network` section contains settings related to the network. The `bindAddress` setting specifies the address and port where the node will bind to. The `nodeName` setting specifies the name of the node. The `knownPeers` setting specifies the list of known peers. The `restApi` section contains settings related to the REST API. The `bindAddress` setting specifies the address and port where the API will bind to. The `apiKeyHash` setting is set to null, which means that there is no protection for the API.
+
+Overall, this configuration file sets up a local node for testing purposes in the Ergo project. It specifies various settings related to the node, wallet, chain, and Scorex framework. These settings can be modified to suit the needs of the project.
+## Questions: 
+ 1. What is the purpose of this code file?
+   - This code file is a configuration file for a local node of the Ergo blockchain, suitable for testing purposes.
+
+2. What is the significance of the `testMnemonic` and `testKeysQty` values in the `wallet` section?
+   - The `testMnemonic` value is the mnemonic seed used in the wallet for tests, and the `testKeysQty` value is the number of keys to be generated for tests.
+
+3. What is the purpose of the `apiKeyHash` value in the `restApi` section?
+   - The `apiKeyHash` value is used for protection in the REST API, but in this case it is set to null, meaning anyone with access to localhost may spend your coins.

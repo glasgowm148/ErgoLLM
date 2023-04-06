@@ -1,0 +1,29 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/scorex/core/network/message/BasicMessagesRepo.scala)
+
+The code defines several message types used in the communication between nodes in the Ergo blockchain network. 
+
+The `ModifiersData` case class is a wrapper for block sections of the same type. It is used to send multiple block sections at once over the wire. The `InvData` case class transmits one or more inventories of objects known to the transmitting peer. It can be sent unsolicited to announce new transactions or blocks, or it can be sent in reply to a `SyncInfo` message. 
+
+The `SyncInfoMessageSpec` class is responsible for requesting an `Inv` message that provides modifier ids required by the sender to synchronize their blockchain with the recipient. It allows a peer which has been disconnected or started for the first time to get the data it needs to request the blocks it hasn't seen. 
+
+The `RequestModifierSpec` object requests one or more modifiers from another node. The objects are requested by an inventory, which the requesting node typically received previously by way of an `Inv` message. 
+
+The `ModifiersSpec` object is a reply to a `RequestModifier` message which requested these modifiers. It serializes and parses the data to be sent over the network. 
+
+The `GetPeersSpec` object requests a `Peers` message from the receiving node, preferably one with lots of `PeerSpec` of other receiving nodes. The transmitting node can use those `PeerSpec` addresses to quickly update its database of available nodes rather than waiting for unsolicited `Peers` messages to arrive over time. 
+
+The `PeersSpec` object is a reply to a `GetPeer` message and relays connection information about peers on the network. 
+
+The `HandshakeSerializer` object provides information about the transmitting node to the receiving node at the beginning of a connection. Until both peers have exchanged `Handshake` messages, no other messages will be accepted. 
+
+Overall, these message types are used to facilitate communication between nodes in the Ergo blockchain network. They allow nodes to request and receive data from each other, as well as exchange information about available peers.
+## Questions: 
+ 1. What is the purpose of the `ModifiersData` and `InvData` case classes?
+- `ModifiersData` is a wrapper for block sections of the same type, used to send multiple block sections at once over the wire. It contains a `NetworkObjectTypeId` value and a map of `ModifierId` keys and byte array values. 
+- `InvData` is used to transmit one or more inventories of objects known to the transmitting peer. It contains a `NetworkObjectTypeId` value and a sequence of `ModifierId` values.
+
+2. What is the purpose of the `SyncInfoMessageSpec` class?
+- The `SyncInfoMessageSpec` class is used to request an `Inv` message that provides modifier ids required by the sender to synchronize their blockchain with the recipient. It allows a peer which has been disconnected or started for the first time to get the data it needs to request the blocks it hasn't seen.
+
+3. What is the purpose of the `HandshakeSerializer` object?
+- The `HandshakeSerializer` object provides information about the transmitting node to the receiving node at the beginning of a connection. Until both peers have exchanged `Handshake` messages, no other messages will be accepted. It serializes a `Handshake` instance into a byte writer and parses a `Handshake` instance from a byte reader.

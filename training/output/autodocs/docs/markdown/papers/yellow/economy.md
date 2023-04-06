@@ -1,0 +1,24 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/papers/yellow/economy.tex)
+
+The code presented in this file outlines the economic properties of the Ergo blockchain. It describes the rules for the emission of Ergo coins and proposes a storage fee consensus mechanism to ensure the long-term survivability of the chain.
+
+The Ergo emission will last for 2080799 blocks, which is approximately 8 years with a planned 2-minute block interval. During the first 525600 blocks (2 years), 75 Erg will be issued per block, and after that, the block reward will be reduced by 3 Erg every 64800 blocks (3 months). To fund the development, during the first 655200 blocks (2.5 years), the part of the block rewards that exceeds 67.5 will go to the foundation treasury instead of a miner.
+
+The Ergo coins emission rule is defined explicitly by sigma-state transactional language, instead of having an implicit emission rule via a special type of transaction (e.g., coinbase transaction in Bitcoin). Total miners rewards of 93409132.5 Erg will be created in the genesis state in a box, protected by a script defined at https://git.io/fhgOq. This script allows a miner to take only a part of all coins every block. The transaction that spends this output should have exactly 2 outputs: the first one should have the same protecting script and contain all input coins minus the current block reward, while the second one may be collected by the current block miner after at least 720 blocks delay.
+
+Total foundation rewards will be kept in the genesis state in a box with 4330791.5 Erg and will be protected by the script defined at https://git.io/fhoqw. The first output of the transaction that spends this box should at least have the value of the remaining treasury. In addition, conditions from R4 register of this box should be satisfied, allowing to protect this output from undesirable spent. At the beginning, R4 register will contain 2-of-3 multisignature proposition with the hardcoded public keys.
+
+To ensure the long-term survivability of the chain, the proposed storage fee consensus mechanism outlines two properties. Firstly, coins protected by keys being lost should be returned into circulation. Otherwise, after the end of the emission period, the amount of coins in circulation will always decrease and eventually reach zero. Secondly, nothing should be kept in the state forever and for free. Otherwise, the size of the state is always increasing with time, thus reducing clients' performance.
+
+The proposed storage fee consensus mechanism requires that register R3 of a box contains tuple $(creation\_height, tx\_id || out\_num)$, where $creation\_height$ provided by a user is used to determine the block height at the moment of transaction generation. Transaction can only be put in the block of height $h$ if for every created box its $creation\_height \le h$. Once the subsidized period for the box ends, anyone (presumably, a miner) can create a new box with the same content (including the guarding script) except the monetary value and $R3$ contents. The monetary value is to be reduced by $K \cdot B$ maximum, where $B$ is the spent box (self) size, and $K$ is the storage cost for the period $SP$. Thus, the difference is to be paid to the miner. If the box value is less than the storage fee, all the box content, including tokens, could be spent by the miner.
+
+For efficient lookup, the proposed storage fee consensus mechanism requires a spending proof for an expired box to be just a context extension that contains only an index of an output that is trying to spend the box. The variable identifier for the index in the extension is $127$. The proposed concrete parameters for the storage fee consensus mechanism are $SP = 1051200 \approx 4$ years and $K$ - cost of storage of 1 byte of data in a State for the period of $SP$ blocks. The cost should be determined by miner votes, $1250000 (nanoErg/SP)$ by default, and the maximum value is $2500000$.
+## Questions: 
+ 1. What is the emission schedule for Ergo coins?
+- Ergo emission will last for 2080799 blocks (8 years with planned 2 minute block interval) --- for the first 525600 blocks (2 years) 75 Erg will be issued per block and after that the block reward will be reduced by 3 Erg every 64800 blocks (3 months).
+
+2. How is the Ergo coin emission rule defined?
+- Instead of having an implicit emission rule via a special type of transaction (e.g. coinbase transaction in Bitcoin), Ergo coins emission rule is defined explicitly by sigma-state transactional language.
+
+3. What are the storage fee consensus rules for Ergo?
+- Once the subsidized period for the box ends, anyone (presumably, a miner) can create a new box with the exactly the same content (including the guarding script) except the monetary value and R3 contents. The monetary value is to reduced by K * B maximum, where B is the spent box (self) size and K is the storage cost for the period SP.

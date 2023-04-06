@@ -1,0 +1,16 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/nodeView/wallet/requests/TransactionGenerationRequest.scala)
+
+The code defines two classes and a trait that are used to encode and decode transaction generation requests in the Ergo platform. The `TransactionGenerationRequest` trait is a marker trait that is extended by other classes that represent specific types of transaction requests. The `TransactionRequestEncoder` class is used to encode transaction requests into JSON format, while the `TransactionRequestDecoder` class is used to decode JSON-encoded transaction requests back into their original Scala objects.
+
+The `TransactionRequestEncoder` class takes an instance of `ErgoSettings` as a constructor parameter, which is used to create an implicit `Encoder[ErgoAddress]` instance that is used to encode Ergo addresses. The `apply` method of the class takes a `TransactionGenerationRequest` instance and matches it against three possible cases: `PaymentRequest`, `AssetIssueRequest`, and `BurnTokensRequest`. Depending on the type of the request, the appropriate encoder is created and used to encode the request into JSON format.
+
+The `TransactionRequestDecoder` class also takes an instance of `ErgoSettings` as a constructor parameter, which is used to create instances of the three decoders that are used to decode the three types of transaction requests. The `apply` method of the class takes a `HCursor` instance, which represents a cursor into a JSON document. The method first tries to decode the cursor as a `PaymentRequest`, then as an `AssetIssueRequest`, and finally as a `BurnTokensRequest`. If none of the decoders succeed, an error is returned. If one of the decoders succeeds, the decoded object is returned.
+
+These classes are used in the larger Ergo platform to encode and decode transaction requests that are sent between different parts of the system. For example, a wallet application might use the `TransactionRequestEncoder` class to encode a payment request into JSON format, and then send the encoded request to a node in the Ergo network. The node would then use the `TransactionRequestDecoder` class to decode the request back into a Scala object, and process the request accordingly.
+## Questions: 
+ 1. What is the purpose of this code?
+   - This code defines two classes, `TransactionRequestEncoder` and `TransactionRequestDecoder`, which are used to encode and decode transaction generation requests in the Ergo platform wallet.
+2. What other classes or dependencies does this code rely on?
+   - This code relies on several other classes and dependencies, including `io.circe`, `org.ergoplatform.ErgoAddress`, `org.ergoplatform.http.api.ApiCodecs`, `org.ergoplatform.nodeView.wallet.ErgoAddressJsonEncoder`, and `org.ergoplatform.settings.ErgoSettings`.
+3. What types of transaction generation requests can be handled by this code?
+   - This code can handle several types of transaction generation requests, including `PaymentRequest`, `AssetIssueRequest`, and `BurnTokensRequest`.

@@ -1,0 +1,22 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/it/scala/org/ergoplatform/it/KnownNodesSpec.scala)
+
+The `KnownNodesSpec` class is a test suite that verifies whether a node in the Ergo blockchain network knows about other nodes in the network. The purpose of this test is to ensure that the nodes can communicate with each other and that the network is functioning correctly. 
+
+The test suite uses the `IntegrationSuite` trait, which provides a set of utility methods for running integration tests. The `nodeSeedConfigs` variable is a list of configuration files for the nodes in the network. The `take(3)` method is used to select the first three nodes from the list, and the `map(nonGeneratingPeerConfig.withFallback)` method is used to apply a configuration to each node. 
+
+The `docker.startDevNetNodes` method is then called to start the nodes in the network. This method takes two arguments: the list of node configurations and a topology configuration. The `sequentialTopologyConfig` is used to specify that the nodes should be started in sequence. 
+
+The `it should` method is used to define a test case. The test case verifies that the third node in the network knows about the first node in the network. The `waitForPeers` method is called on the third node to wait for it to discover other nodes in the network. The `targetPeersCount` variable is set to the number of nodes in the network minus one (the node itself). The `map` method is then used to check that the list of peers returned by `waitForPeers` contains the name of the first node in the network. 
+
+The `Await.result` method is used to wait for the result of the test case. The `10.minute` argument specifies the maximum amount of time to wait for the result. 
+
+Overall, the `KnownNodesSpec` class is an important part of the Ergo blockchain project, as it ensures that the network is functioning correctly and that nodes can communicate with each other. The test suite can be run as part of the project's continuous integration process to ensure that changes to the codebase do not break the network.
+## Questions: 
+ 1. What is the purpose of the `ergoplatform.it.container` package?
+- The `ergoplatform.it.container` package contains an `IntegrationSuite` and `Node` classes that are used in this code.
+
+2. What is the significance of the `ignore` keyword in the test case?
+- The `ignore` keyword indicates that the test case is currently not being executed and is being skipped.
+
+3. What is the `waitForPeers` method doing and what is its expected output?
+- The `waitForPeers` method is waiting for a specified number of peers to connect to the node and returns a list of connected peers. The expected output is a list of peer names that should contain "node01".

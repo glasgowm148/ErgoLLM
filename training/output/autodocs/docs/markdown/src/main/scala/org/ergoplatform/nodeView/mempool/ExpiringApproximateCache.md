@@ -1,0 +1,34 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/nodeView/mempool/ExpiringApproximateCache.scala)
+
+The `ExpiringApproximateCache` class is a time-based expiring cache that uses a combination of a time-expiring cache and a collection of Bloom filters to store elements. The cache is designed to handle a large number of elements, where the accuracy of the cache is not critical. The cache is implemented as a `sealed trait` that defines the basic functionality of the cache. The `ExpiringApproximateCache` class extends this trait and provides the implementation details.
+
+The cache is designed to store elements that have a finite lifespan. The cache is divided into two parts: a time-expiring cache and a collection of Bloom filters. The time-expiring cache is implemented as a `TreeMap` that stores the elements and their expiration time. The Bloom filters are implemented as a FIFO queue of Bloom filters, where each filter has a fixed size and a fixed false-positive rate. The Bloom filters are used to store elements that have expired from the time-expiring cache.
+
+When an element is added to the cache, the cache first checks if the time-expiring cache is full. If the cache is full, the cache clears any expired elements and checks if the cache is more than half-full. If the cache is more than half-full, the cache moves all the elements to a Bloom filter. If the cache is less than half-full, the cache clears any expired elements. If the time-expiring cache is not full, the cache adds the element to the time-expiring cache.
+
+The `ExpiringApproximateCache` class provides three methods: `put`, `mightContain`, and `approximateElementCount`. The `put` method adds an element to the cache. The `mightContain` method checks if an element might be in the cache. The `approximateElementCount` method returns an estimate of the number of elements in the cache.
+
+The `ExpiringApproximateCache` class is used in the larger project to store elements that have a finite lifespan. The cache is designed to handle a large number of elements, where the accuracy of the cache is not critical. The cache is useful in situations where the cost of storing all the elements is too high, and the cost of false positives is acceptable. 
+
+Example usage:
+
+```scala
+val cache = ExpiringApproximateCache.empty(100, 10.minutes)
+
+cache.put("element1")
+cache.put("element2")
+
+cache.mightContain("element1") // true
+cache.mightContain("element3") // false
+
+cache.approximateElementCount // 2
+```
+## Questions: 
+ 1. What is the purpose of this code and how does it work?
+- This code implements an approximate cache using a combination of a time-based expiring TreeMap and a size-limited FIFO collection of BloomFilters. The cache is designed to accurately test for presence of a lower number of elements and only approximately test for a huge number of elements. The code achieves this by expiring whole bloom filters instead of expiring elements and checking all bloom filters for element presence.
+
+2. What is the false positive rate of the Bloom filters used in this code?
+- The Bloom filters used in this code have a false positive rate of 0.1% per filter, and since multiple filters are used, the total false positive rate is to be multiplied.
+
+3. How is the cache size managed in this code?
+- The cache size is managed by setting a maximum number of elements to keep in the front cache and following elements are kept in the Bloom filters. When the front cache is full, expired records are cleared, and if the cache is still more than half-full, all the elements are moved to a Bloom filter. The number of Bloom filters used is hard-coded to 4, which is enough to store up to 5x elements of the front cache in total with a small false positive rate.

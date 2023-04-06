@@ -1,0 +1,32 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/scorex/core/network/ConnectionDirection.scala)
+
+The code above defines a sealed trait called `ConnectionDirection` and two case objects that extend it: `Incoming` and `Outgoing`. The purpose of this code is to provide a way to differentiate between incoming and outgoing network connections in the `ergo` project.
+
+The `ConnectionDirection` trait has two methods: `isIncoming` and `isOutgoing`. The former returns a boolean value indicating whether the connection is incoming, while the latter returns the opposite value by negating the result of `isIncoming`. This allows for easy checking of the direction of a connection.
+
+The `Incoming` and `Outgoing` case objects both extend the `ConnectionDirection` trait and provide an implementation for the `isIncoming` method. `Incoming` sets its value to `true`, indicating that it represents an incoming connection, while `Outgoing` sets its value to `false`, indicating that it represents an outgoing connection.
+
+This code can be used throughout the `ergo` project to determine the direction of network connections. For example, it could be used in a method that processes incoming network messages differently than outgoing messages. Here is an example of how this code could be used:
+
+```scala
+def processMessage(msg: NetworkMessage, direction: ConnectionDirection): Unit = {
+  if (direction.isIncoming) {
+    // process incoming message
+  } else {
+    // process outgoing message
+  }
+}
+```
+
+In this example, the `processMessage` method takes a `NetworkMessage` and a `ConnectionDirection` as parameters. It uses the `isIncoming` method of the `ConnectionDirection` parameter to determine whether the message is incoming or outgoing, and processes it accordingly.
+
+Overall, this code provides a simple and effective way to differentiate between incoming and outgoing network connections in the `ergo` project.
+## Questions: 
+ 1. What is the purpose of the `ConnectionDirection` trait and its subclasses?
+- The `ConnectionDirection` trait and its subclasses define whether a connection is incoming or outgoing in a network.
+
+2. Why does the `Outgoing` object override the `isIncoming` method?
+- The `Outgoing` object overrides the `isIncoming` method to return `false`, indicating that it is not an incoming connection.
+
+3. What is the significance of the `sealed` keyword before the `ConnectionDirection` trait?
+- The `sealed` keyword restricts the possible subclasses of `ConnectionDirection` to only those defined in this file, preventing other classes from extending it.

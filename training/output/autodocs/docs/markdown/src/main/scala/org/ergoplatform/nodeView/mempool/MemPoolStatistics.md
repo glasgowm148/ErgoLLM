@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/nodeView/mempool/MemPoolStatistics.scala)
+
+The `MemPoolStatistics` class is an immutable implementation of mempool statistics. It keeps track of the start of the measurement interval, the amount of taken transactions since the start of the measurement, the last snapshot time, and the amount of transactions at the moment of the last snapshot. It also includes a histogram of the fees paid for transactions in the mempool.
+
+The `add` method is called when a transaction is taken from the mempool and placed in the blockchain. It updates the statistics by incrementing the number of taken transactions, updating the snapshot time and the number of transactions at the moment of the last snapshot, and updating the histogram with the fee paid for the new transaction. The method also prunes the statistics periodically to better represent the most recent system behavior. The pruning is done by cutting half of the range of the data every measurement interval.
+
+The `MemPoolStatistics` object includes some time parameters for the mempool statistics, such as the number of histogram bins (one hour) and the measurement interval (also one hour). It also includes a default pool histogram, which is a list of `FeeHistogramBin` objects initialized with zero values.
+
+This class can be used in the larger project to keep track of the mempool statistics, which can be useful for analyzing the behavior of the mempool and optimizing the transaction selection algorithm. For example, the histogram can be used to determine the optimal fee for a transaction to be included in the next block. The `add` method can be called every time a transaction is taken from the mempool, and the resulting statistics can be analyzed periodically to optimize the transaction selection algorithm.
+## Questions: 
+ 1. What is the purpose of the `MemPoolStatistics` class?
+- The `MemPoolStatistics` class is an immutable implementation of mempool statistics that keeps track of the start of the measurement interval, the amount of taken transactions since the start of measurement, the last snapshot time, the amount of transactions at the moment of the last snapshot, and a histogram of fee data.
+
+2. What is the `add` method used for?
+- The `add` method is used to add a new entry to the mempool statistics when a transaction is taken from the mempool and placed in the blockchain. It updates the statistics based on the current time and the weighted transaction ID.
+
+3. What are the time parameters used in the `MemPoolStatistics` object?
+- The `MemPoolStatistics` object has two time parameters: `nHistogramBins` and `measurementIntervalMsec`. `nHistogramBins` is set to 60, which represents one hour, and `measurementIntervalMsec` is also set to one hour (60 * 1000 milliseconds). These parameters are used to periodically prune the statistics and keep data up to 2 * `measurementIntervalMsec`.

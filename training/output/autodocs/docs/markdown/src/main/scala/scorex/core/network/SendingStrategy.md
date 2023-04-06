@@ -1,0 +1,22 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/scorex/core/network/SendingStrategy.scala)
+
+The code defines a set of sending strategies for a network module in the ergo project. The `SendingStrategy` trait is an abstract class that defines a method `choose` which takes a sequence of `ConnectedPeer` objects and returns a sequence of `ConnectedPeer` objects. The `ConnectedPeer` class is not defined in this file, but it can be assumed to represent a peer in the network that is connected to the current node.
+
+The `SendToRandom` object is a concrete implementation of the `SendingStrategy` trait that chooses a random peer from the list of connected peers. If the list is empty, an empty sequence is returned. This strategy can be used when a message needs to be sent to a single peer, but it doesn't matter which one.
+
+The `Broadcast` object is another concrete implementation of the `SendingStrategy` trait that simply returns the entire list of connected peers. This strategy can be used when a message needs to be sent to all connected peers.
+
+The `SendToPeer` case class is a concrete implementation of the `SendingStrategy` trait that takes a single `ConnectedPeer` object and returns a sequence containing only that peer. This strategy can be used when a message needs to be sent to a specific peer.
+
+The `SendToPeers` case class is a concrete implementation of the `SendingStrategy` trait that takes a sequence of `ConnectedPeer` objects and returns that same sequence. This strategy can be used when a message needs to be sent to a specific set of peers.
+
+Overall, these sending strategies provide flexibility in how messages are sent within the network module of the ergo project. By choosing the appropriate strategy, messages can be sent to a single peer, multiple peers, or all peers. The `SendToRandom` and `Broadcast` strategies are particularly useful for scenarios where the specific peers to send a message to are not important. The `SendToPeer` and `SendToPeers` strategies are useful when a message needs to be sent to specific peers.
+## Questions: 
+ 1. What is the purpose of the `SendingStrategy` trait and its implementations?
+- The `SendingStrategy` trait defines a method for choosing which peers to send data to, and its implementations (`SendToRandom`, `Broadcast`, `SendToPeer`, and `SendToPeers`) provide different strategies for selecting those peers.
+
+2. What is the difference between `SendToPeer` and `SendToPeers`?
+- `SendToPeer` selects a single peer to send data to, while `SendToPeers` selects a sequence of peers to send data to.
+
+3. What happens if the `peers` sequence is empty in `SendToRandom`?
+- If the `peers` sequence is empty, the `choose` method returns an empty sequence (`Nil`).

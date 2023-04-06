@@ -1,0 +1,28 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/papers/yellow/compile.sh)
+
+This code is a shell script that compiles a LaTeX document called "YellowPaper" into a PDF file. The script first checks if the necessary LaTeX commands, pdflatex and bibtex, are installed on the system. If either command is not found, the script prints an error message and exits. 
+
+Assuming both commands are available, the script then removes any existing PDF file called "YellowPaper.pdf" and compiles the LaTeX document using pdflatex and bibtex. The -shell-escape flag is used with both commands to allow for external programs to be executed during the compilation process. This is necessary for certain LaTeX packages that require external programs to generate graphics or perform other tasks.
+
+After the compilation is complete, the script checks if it was run from the same directory as the YellowPaper.tex file. If so, it removes all the auxiliary files generated during the compilation process, such as .aux and .log files, as well as the _minted-YellowPaper/ directory, which contains syntax-highlighted code listings if the minted package was used in the document.
+
+This script can be used as part of a larger project that involves writing technical documents in LaTeX. By automating the compilation process, it saves time and ensures that the document is always up-to-date with the latest changes. The script can be run manually or as part of a continuous integration pipeline to automatically generate the PDF file whenever changes are made to the LaTeX document. 
+
+Example usage:
+```
+$ cd path/to/ergo/docs
+$ sh compile_yellowpaper.sh
+```
+This will compile the YellowPaper.tex file located in the current directory and generate a YellowPaper.pdf file.
+## Questions: 
+ 1. What is the purpose of this code?
+   
+   This code compiles a LaTeX document called "YellowPaper" into a PDF file, and removes any auxiliary files generated during the compilation process.
+
+2. What dependencies are required to run this code?
+   
+   This code requires the installation of pdflatex and bibtex. Additionally, it may require the installation of additional packages like fonts, etc.
+
+3. What is the significance of the "YellowPaper" file?
+   
+   The "YellowPaper" file is the LaTeX document that is being compiled into a PDF file.
