@@ -1,4 +1,4 @@
-# ErgoLLMR
+# ErgoLLM
 
 ## Training
 
@@ -9,6 +9,6 @@
 
 ### Output
 
-- [autodocs](training/output/autodocs/)
-- [docsgpt](training/output/docsgpt/)
-- [langchain-chat](training/output/langchain-chat/)
+  - [autodocs](training/output/autodocs/) generated using [https://github.com/context-labs/autodoc](https://github.com/context-labs/autodoc)
+- [docsgpt](training/output/docsgpt/) generated using [github.com/arc53/DocsGPT](https://github.com/arc53/DocsGPT)
+- [langchain-chat](training/output/langchain-chat/) generated using [github.com/hwchase17/chat-langchain](https://github.com/hwchase17/chat-langchain)
