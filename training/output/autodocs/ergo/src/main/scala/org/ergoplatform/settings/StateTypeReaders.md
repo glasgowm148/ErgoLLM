@@ -1,0 +1,26 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/settings/StateTypeReaders.scala)
+
+The `StateTypeReaders` trait in the `org.ergoplatform.settings` package provides a method for converting a string representation of a `StateType` to an actual `StateType` object. 
+
+The `StateType` enum is defined in the `org.ergoplatform.nodeView.state` package and represents the different types of states that can be stored in the Ergo blockchain. These include `UtxoState`, `DigestState`, and `EmptyState`. 
+
+The `stateTypeFromString` method takes two parameters: `typeName`, which is the string representation of the desired `StateType`, and `path`, which is the path to the configuration file where the `typeName` is located. The method searches through the `StateType` enum values to find the one that matches the `typeName` parameter. If a match is found, the corresponding `StateType` object is returned. If no match is found, a `ConfigException.BadValue` is thrown with the `path` and `typeName` parameters as arguments. 
+
+This method can be used in the larger Ergo project to convert configuration file values into actual `StateType` objects. For example, if a configuration file specifies that the blockchain should use `UtxoState`, the `stateTypeFromString` method can be used to convert the string "UtxoState" into the corresponding `StateType` object. 
+
+Example usage:
+
+```
+val config = ConfigFactory.load("application.conf")
+val stateTypeString = config.getString("ergo.blockchain.stateType")
+val stateType = stateTypeFromString(stateTypeString, "ergo.blockchain.stateType")
+```
+## Questions: 
+ 1. What is the purpose of the `StateTypeReaders` trait?
+- The `StateTypeReaders` trait provides a method `stateTypeFromString` that converts a string representation of a `StateType` to an actual `StateType` object.
+
+2. What is the `StateType` enum and where is it defined?
+- The `StateType` enum is referenced in the `stateTypeFromString` method and is likely defined in another file or package within the `ergo` project.
+
+3. What happens if the `typeName` parameter in the `stateTypeFromString` method does not match any of the `StateType` values?
+- If the `typeName` parameter does not match any of the `StateType` values, the method will throw a `ConfigException.BadValue` with the `path` and `typeName` parameters as arguments.

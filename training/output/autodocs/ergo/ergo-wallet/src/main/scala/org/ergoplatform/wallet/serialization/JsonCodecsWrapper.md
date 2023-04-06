@@ -1,0 +1,28 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/ergo-wallet/src/main/scala/org/ergoplatform/wallet/serialization/JsonCodecsWrapper.scala)
+
+The `JsonCodecsWrapper` object in the `org.ergoplatform.wallet.serialization` package provides JSON codecs for Ergo-related objects. This object is a singleton package, not a trait, and is designed to be used by Java applications that require JSON codecs for Ergo-related objects. 
+
+The `JsonCodecs` trait provides JSON codecs for Ergo-related objects, and the `JsonCodecsWrapper` object extends this trait to provide a singleton package that can be used by Java applications. This design allows for easy integration of JSON serialization and deserialization into Java applications that use Ergo-related objects.
+
+For example, if a Java application needs to serialize an Ergo-related object to JSON, it can use the `JsonCodecsWrapper` object to obtain the necessary codecs. The following code snippet demonstrates how this can be done:
+
+```
+import org.ergoplatform.wallet.serialization.JsonCodecsWrapper;
+import org.ergoplatform.wallet.MyErgoObject;
+
+MyErgoObject obj = new MyErgoObject();
+String json = JsonCodecsWrapper.encode(obj);
+```
+
+In this example, the `JsonCodecsWrapper` object is used to encode an instance of `MyErgoObject` to a JSON string. The resulting JSON string can then be sent over the network or stored in a file.
+
+Overall, the `JsonCodecsWrapper` object provides a convenient way for Java applications to use JSON serialization and deserialization with Ergo-related objects.
+## Questions: 
+ 1. What is the purpose of the `JsonCodecs` class that is being imported?
+- The `JsonCodecs` class is being imported to provide JSON codecs for ergo-related objects.
+
+2. Why is the `JsonCodecsWrapper` object defined as a singleton package instead of a trait?
+- The `JsonCodecsWrapper` object is defined as a singleton package to provide a convenient way for Java applications to use the JSON codecs for ergo-related objects.
+
+3. What is the relationship between the `JsonCodecsWrapper` object and the `JsonCodecs` class?
+- The `JsonCodecsWrapper` object extends the `JsonCodecs` class, which means that it inherits all of the JSON codecs provided by the `JsonCodecs` class.

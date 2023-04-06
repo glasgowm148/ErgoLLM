@@ -1,0 +1,27 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/scorex/core/validation/ModifierError.scala)
+
+The code defines a set of classes and traits that are used for validating modifiers in the Ergo blockchain platform. A modifier is a piece of data that can be added to a block in the blockchain, such as a transaction or a header. The classes and traits defined in this file are used to handle errors that occur during the validation of modifiers.
+
+The `InvalidModifier` case class is used to wrap error details related to a block section that has been deemed invalid. It contains the error message, the ID of the modifier that caused the error, and the type ID of the modifier.
+
+The `ModifierError` trait is a base trait for errors that occur during the validation of modifiers. It defines several methods that must be implemented by any class that extends it. These methods include `message`, which returns a string describing the error, `isFatal`, which returns a boolean indicating whether the error is fatal or recoverable, `modifierId`, which returns the ID of the modifier that caused the error, `modifierTypeId`, which returns the type ID of the modifier, and `toThrowable`, which returns the error as a throwable object.
+
+The `MalformedModifierError` class is a subclass of `ModifierError` that represents a permanent error that cannot be recovered from even after history updates. It takes a message, modifier ID, and modifier type ID as parameters, and can also take an optional cause parameter that represents the underlying cause of the error.
+
+The `RecoverableModifierError` class is a subclass of `ModifierError` that represents a temporary error that can be recovered from after history updates. It takes the same parameters as `MalformedModifierError`, but does not collect a stack trace when it is created, making it a lightweight exception.
+
+The `MultipleErrors` case class is used to hold multiple modifier errors. It takes a sequence of `ModifierError` objects as a parameter and concatenates their error messages into a single string. It also sets the cause of the exception to the throwable object of the first error in the sequence, or null if the sequence is empty. This class is not itself a `ModifierError` instance to prevent nesting `MultipleErrors` to `MultipleErrors`.
+
+Overall, these classes and traits provide a framework for handling errors that occur during the validation of modifiers in the Ergo blockchain platform. They allow for different types of errors to be distinguished and handled appropriately, and provide a way to wrap error details for easier handling.
+## Questions: 
+ 1. What is the purpose of the `InvalidModifier` case class?
+   
+   The `InvalidModifier` case class is a container for error details related to an invalid block section. It wraps a validation error, block section id, and block section type id.
+
+2. What is the difference between `MalformedModifierError` and `RecoverableModifierError`?
+
+   `MalformedModifierError` is a permanent modifier error that cannot be recovered in the future even after any history updates, while `RecoverableModifierError` is a temporary modifier error that may be recovered in the future after some history updates. Additionally, `RecoverableModifierError` is lightweight because it does not collect a stack trace when an instance is created.
+
+3. What is the purpose of the `MultipleErrors` case class?
+
+   The `MultipleErrors` case class is a composite error class that can hold more than one modifier error inside. It was intentionally not made a `ModifierError` instance to prevent nesting `MultipleErrors` to `MultipleErrors`.

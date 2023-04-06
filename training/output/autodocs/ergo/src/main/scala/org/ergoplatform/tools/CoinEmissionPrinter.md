@@ -1,0 +1,24 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/tools/CoinEmissionPrinter.scala)
+
+The `CoinEmissionPrinter` object is a tool for printing information about the coin emission schedule of the Ergo blockchain. It imports the `EmissionRules` and `MonetarySettings` classes from the `org.ergoplatform.mining.emission` and `org.ergoplatform.settings` packages, respectively. 
+
+The `MonetarySettings` class is used to define the monetary policy of the Ergo blockchain. It takes six parameters: `coinsInOneErgo`, `blocksPerHour`, `genesisTimestamp`, `epochLength`, `minersRewardDelay`, and `foundersRewardDelay`. These parameters are used to calculate the total coin supply and the block rewards for miners and the foundation. 
+
+The `EmissionRules` class is used to calculate the block rewards for miners and the foundation at a given block height. It takes a `MonetarySettings` object as a parameter and uses it to calculate the block rewards based on the Ergo monetary policy. 
+
+The `CoinEmissionPrinter` object defines two lazy values: `TotalSupply` and `FirstYearSupply`. `TotalSupply` calculates the total coin supply of the Ergo blockchain by summing the block rewards for all blocks up to the total number of blocks defined in the `EmissionRules` object. `FirstYearSupply` calculates the total coin supply for the first year of the Ergo blockchain by summing the block rewards for the first `blocksPerYear` blocks. 
+
+The `CoinEmissionPrinter` object also defines a `loop` function that takes three parameters: `height`, `totalMinersReward`, and `totalFoundationReward`. The `loop` function is a tail-recursive function that iterates over all blocks up to the total number of blocks defined in the `EmissionRules` object. For each block, it calculates the block rewards for miners and the foundation using the `minersRewardAtHeight` and `foundationRewardAtHeight` methods of the `EmissionRules` object. It then adds these rewards to the `totalMinersReward` and `totalFoundationReward` parameters and prints information about the block rewards and the total coin supply at intervals of 100,000 blocks. 
+
+The `CoinEmissionPrinter` object prints information about the Ergo coin emission schedule to the console. It prints the total number of blocks, the number of blocks per year, the end rate of coin emission, the first year supply of coins, and the total coin supply. It also prints a table that shows the age of the blockchain in years, the number of foundation coins, the number of miners coins, the number of miners coins per block, and the total coin supply at intervals of 100,000 blocks. 
+
+This tool can be used to monitor the coin emission schedule of the Ergo blockchain and to calculate the expected block rewards for miners and the foundation at a given block height.
+## Questions: 
+ 1. What is the purpose of the `CoinEmissionPrinter` object?
+- The `CoinEmissionPrinter` object is used to print information about the coin emission schedule of the Ergo platform.
+
+2. What is the significance of the `MonetarySettings` object?
+- The `MonetarySettings` object contains various parameters that are used to calculate the coin emission schedule, such as the number of blocks per year and the total supply of coins.
+
+3. What is the purpose of the `loop` function?
+- The `loop` function is used to iterate over the blocks in the coin emission schedule and calculate the total amount of coins issued to miners and the foundation at each block height. The function also prints out information about the coin emission schedule at regular intervals.

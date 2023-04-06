@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/ergo-wallet/src/main/scala/org/ergoplatform/wallet/protocol/context/TransactionContext.scala)
+
+The `TransactionContext` class is a part of the `ergo` project and is used as a part of the execution context in regards to spending transactions. It takes in three parameters: `boxesToSpend`, `dataBoxes`, and `spendingTransaction`. 
+
+`boxesToSpend` is an indexed sequence of `ErgoBox` objects, which represent the inputs of the transaction. `dataBoxes` is also an indexed sequence of `ErgoBox` objects, but these represent the data (read-only) inputs of the transaction. Finally, `spendingTransaction` is an `ErgoLikeTransactionTemplate` object that represents the spending transaction.
+
+The purpose of this class is to provide a context for executing a spending transaction. It allows the user to specify the inputs and data inputs of the transaction, as well as the spending transaction itself. This context can then be used in other parts of the `ergo` project to execute the transaction.
+
+One example of how this class might be used is in the creation of a new spending transaction. The user could create a new instance of `TransactionContext` and pass in the necessary inputs and spending transaction. They could then use this context to execute the transaction and update the blockchain accordingly.
+
+Overall, the `TransactionContext` class is an important part of the `ergo` project and provides a useful tool for executing spending transactions.
+## Questions: 
+ 1. What is the purpose of the `TransactionContext` class?
+- The `TransactionContext` class represents part of the execution context for spending a transaction, including inputs, data inputs, and the spending transaction itself.
+
+2. What is the significance of the `TODO` comment in the code?
+- The `TODO` comment suggests that the `spendingTransaction` parameter may no longer be necessary after a refactoring of the `ErgoLikeContext` in sigma, and that the class could potentially be simplified as a result.
+
+3. What is the relationship between `ErgoBox` and `UnsignedInput`?
+- The `ErgoBox` and `UnsignedInput` classes are both used in the `spendingTransaction` parameter of the `TransactionContext` class, indicating that they are likely related to the inputs of the transaction being spent.

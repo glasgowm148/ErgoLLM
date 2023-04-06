@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/resources/panel/asset-manifest.json)
+
+The code above is a JSON object that contains information about the files and entrypoints for the ergo project. The purpose of this code is to provide a mapping of file names to their corresponding URLs, which can be used to load the necessary files for the project.
+
+The "files" property is an object that contains key-value pairs, where the key is the file name and the value is the URL where the file can be accessed. For example, the file "main.css" can be accessed at the URL "/static/css/main.82878fab.chunk.css". This information can be used by the project to load the necessary files when the application is running.
+
+The "entrypoints" property is an array that lists the entrypoints for the project. An entrypoint is a file that is loaded when the application is first started. The order of the files in the array determines the order in which they are loaded. In this case, the "runtime-main.js" file is loaded first, followed by the "2.9338f6a1.chunk.css" file, then the "2.6c0e10bc.chunk.js" file, and so on.
+
+Overall, this code provides a way for the ergo project to manage its files and entrypoints. By using this information, the project can ensure that all necessary files are loaded in the correct order, which is essential for the application to function properly.
+## Questions: 
+ 1. What is the purpose of this code?
+- This code defines the file paths for various static assets (CSS, JS, images, etc.) used in the ergo project, as well as the entrypoints for the project.
+
+2. How are the file paths determined?
+- The file paths are hardcoded as key-value pairs in a JSON object.
+
+3. What is the significance of the "entrypoints" array?
+- The "entrypoints" array lists the order in which the static assets should be loaded in the project, with the first item being the runtime JS file and the last item being the main JS file.

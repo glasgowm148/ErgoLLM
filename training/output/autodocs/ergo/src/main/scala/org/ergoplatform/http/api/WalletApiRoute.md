@@ -1,0 +1,31 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/http/api/WalletApiRoute.scala)
+
+The `WalletApiRoute` class in this code file provides an HTTP API for interacting with the Ergo wallet. It defines various wallet-related operations such as generating and sending transactions, managing wallet addresses, and handling wallet initialization and restoration. The class is designed to work with the Ergo platform's node view and readers holder actors.
+
+The `WalletApiRoute` class extends the `WalletApiOperations` trait and implements the `ApiCodecs` trait for encoding and decoding data. It takes in `readersHolder`, `nodeViewActorRef`, and `ergoSettings` as constructor parameters, which are used to interact with the Ergo platform's components.
+
+The main functionality of this class is provided through the `route` method, which defines the HTTP API endpoints for various wallet operations. Some of the key operations include:
+
+- `getWalletStatusR`: Get the status of the wallet, including initialization, lock status, change address, and wallet height.
+- `balancesR`: Get the confirmed balances of the wallet.
+- `addressesR`: Get the wallet's public addresses.
+- `transactionsR`: Get the wallet's transactions based on specified filters.
+- `sendTransactionR`: Send a transaction from the wallet.
+- `initWalletR`: Initialize the wallet with a password and optional mnemonic passphrase.
+- `restoreWalletR`: Restore the wallet using a mnemonic, password, and optional mnemonic passphrase.
+- `unlockWalletR`: Unlock the wallet using a password.
+- `lockWalletR`: Lock the wallet.
+
+These operations are implemented using various directives and helper methods, which handle input validation, data processing, and interaction with the Ergo platform's components. The API is designed to be flexible and extensible, allowing for easy integration with other components of the Ergo project.
+## Questions: 
+ 1. **What is the purpose of the `WalletApiRoute` class?**
+
+   The `WalletApiRoute` class is responsible for handling HTTP API requests related to wallet operations, such as generating and sending transactions, managing wallet addresses, and interacting with the wallet's state.
+
+2. **How does the `WalletApiRoute` class handle authentication?**
+
+   The `WalletApiRoute` class uses the `withAuth` directive to ensure that the client is authenticated before processing any wallet-related requests. This is done by checking the provided API key against the one configured in the `ErgoSettings`.
+
+3. **What are the main wallet operations supported by the `WalletApiRoute` class?**
+
+   The main wallet operations supported by the `WalletApiRoute` class include generating and sending transactions, managing wallet addresses, checking wallet status and balances, signing transactions, initializing and restoring wallets, and extracting transaction hints.

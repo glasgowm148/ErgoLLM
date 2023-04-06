@@ -1,0 +1,26 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/mining/difficulty/DifficultyAdjustment.scala)
+
+The `DifficultyAdjustment` class is used to calculate the difficulty of mining a block in the Ergo blockchain. The difficulty is adjusted periodically to ensure that blocks are mined at a consistent rate. The class contains methods for calculating the difficulty using two different algorithms: one based on Bitcoin's difficulty adjustment algorithm, and another based on EIP-37.
+
+The `DifficultyAdjustment` class takes a `ChainSettings` object as a parameter, which contains various settings related to the blockchain, such as the block interval, the number of epochs to use for difficulty calculation, and the initial difficulty. The class also has a `ScorexLogging` trait, which provides logging functionality.
+
+The `previousHeadersRequiredForRecalculation` method takes a block height and an epoch length as parameters and returns the heights of the previous headers required for block recalculation. The method checks if the block height is a multiple of the epoch length and returns the heights of the previous headers for the last `useLastEpochs` epochs. If the block height is not a multiple of the epoch length, it returns the height of the previous header.
+
+The `bitcoinCalculate` method takes a sequence of headers and an epoch length as parameters and calculates the difficulty using Bitcoin's difficulty adjustment algorithm. The method takes the last two headers from the sequence and passes them to the `bitcoinCalculate` method that takes two headers as parameters. The `bitcoinCalculate` method calculates the difficulty based on the timestamps and required difficulties of the two headers.
+
+The `eip37Calculate` method takes a sequence of headers and an epoch length as parameters and calculates the difficulty using the EIP-37 algorithm. The method requires at least two headers in the sequence and calculates the predictive difficulty and the limited predictive difficulty based on the previous headers. The method then calculates the classic difficulty using the `bitcoinCalculate` method and takes the average of the classic difficulty and the limited predictive difficulty. The method then calculates the uncompressed difficulty based on the average difficulty and the last difficulty. Finally, the method normalizes the difficulty using the `RequiredDifficulty` class.
+
+The `calculate` method takes a sequence of headers and an epoch length as parameters and calculates the difficulty using a custom algorithm. The method checks if the sequence contains at least one header and returns the required difficulty of the first header if there is only one header. Otherwise, the method calculates the difficulty for each pair of adjacent headers in the sequence and interpolates the difficulties to get the difficulty for the next block. The method normalizes the difficulty using the `RequiredDifficulty` class.
+
+The `interpolate` method takes a sequence of data points and an epoch length as parameters and interpolates the data points using a linear regression algorithm. The method calculates the slope and intercept of the regression line and returns the y-value of the line for the next data point.
+
+Overall, the `DifficultyAdjustment` class provides methods for calculating the difficulty of mining a block in the Ergo blockchain using different algorithms. These methods are used to adjust the difficulty periodically to ensure that blocks are mined at a consistent rate.
+## Questions: 
+ 1. What is the purpose of the `DifficultyAdjustment` class?
+- The `DifficultyAdjustment` class is used to adjust the difficulty of mining blocks in the Ergo blockchain based on various factors.
+
+2. What is the difference between `bitcoinCalculate` and `eip37Calculate` methods?
+- The `bitcoinCalculate` method calculates the difficulty of mining blocks based on the Bitcoin algorithm, while the `eip37Calculate` method calculates the difficulty based on the EIP-37 algorithm.
+
+3. What is the purpose of the `interpolate` method?
+- The `interpolate` method is used to calculate the difficulty of mining blocks based on a set of previous headers, by interpolating between the difficulties of those headers.

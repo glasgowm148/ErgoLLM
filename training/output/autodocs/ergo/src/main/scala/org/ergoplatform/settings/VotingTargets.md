@@ -1,0 +1,16 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/settings/VotingTargets.scala)
+
+The code defines a case class called `VotingTargets` that represents the desired parameters targets for a local miner and the rules to deactivate if a soft-fork is desirable. The `targets` parameter is a map of byte keys to integer values, while `desiredUpdate` is an instance of `ErgoValidationSettingsUpdate`. The `VotingTargets` class has two methods: `softForkOption` and `softFork`. The former returns an optional integer value for the `Parameters.SoftFork` key in the `targets` map, while the latter returns the integer value of `softForkOption` or 0 if it is not defined.
+
+The `VotingTargets` object has two methods: `empty` and `fromConfig`. The former returns an empty instance of `VotingTargets`, while the latter creates an instance of `VotingTargets` from a `Config` object. The `fromConfig` method first retrieves the `voting` object from the `config` object using the `configPath` constant. It then retrieves an array of integers called `rulesToDisable` from the `voting` object. Next, it creates a map of byte keys to integer values from the keys and values of the `voting` object using `flatMap` and `toMap`. Finally, it creates an instance of `ErgoValidationSettingsUpdate` from the `rulesToDisable` array and an empty sequence of `Short` values, and returns a new instance of `VotingTargets` with the `parameterTargets` map and `desiredUpdate` instance.
+
+This code is used to define the desired voting targets for a local miner and the rules to deactivate if a soft-fork is desirable. It can be used in the larger project to configure the voting behavior of the Ergo blockchain network. For example, a developer could create a new instance of `VotingTargets` with custom `targets` and `desiredUpdate` values and pass it to a miner instance to configure its voting behavior. The `fromConfig` method can also be used to create an instance of `VotingTargets` from a configuration file, which can be useful for deploying the Ergo network with different voting targets and rules.
+## Questions: 
+ 1. What is the purpose of the `VotingTargets` case class?
+   - The `VotingTargets` case class is used to store desired parameter targets and rules to deactivate if a soft-fork is desirable for local miner settings.
+   
+2. What is the significance of the `softFork` variable?
+   - The `softFork` variable is an integer value that represents the soft-fork parameter target. If the `softForkOption` is not defined, it defaults to 0.
+   
+3. What is the purpose of the `fromConfig` method in the `VotingTargets` object?
+   - The `fromConfig` method is used to create a `VotingTargets` instance from a `Config` object by extracting the desired parameter targets and rules to deactivate from the config.

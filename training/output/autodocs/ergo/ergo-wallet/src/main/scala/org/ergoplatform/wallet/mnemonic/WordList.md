@@ -1,0 +1,30 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/ergo-wallet/src/main/scala/org/ergoplatform/wallet/mnemonic/WordList.scala)
+
+The code defines a WordList class and an object with methods to load word lists from text files. The WordList class contains a sequence of strings representing words and a delimiter string. The object provides a list of available languages and a method to load a word list for a given language.
+
+The load method takes a languageId string as input and returns a Try[WordList]. It matches the languageId against a list of available languages and loads the corresponding text file using the resourceLoader method. The loaded file is then parsed into a sequence of strings using the loadFile method and wrapped in a WordList object with the appropriate delimiter.
+
+The loadFile method takes a function that loads a BufferedSource and returns a Try[Seq[String]]. It loads the BufferedSource using the provided function, reads its lines into a list, and closes the source. If any of these operations fail, it returns a Failure with an appropriate error message.
+
+The resourceLoader method takes a fileName string and returns a function that loads a BufferedSource. It loads the BufferedSource from a resource file located in the wordlist directory of the classpath using the getClass.getResourceAsStream method and the fileName string. It sets the codec to UTF8 to ensure proper character encoding.
+
+This code is likely used in the larger project to provide a standardized set of words for generating mnemonic phrases. Mnemonic phrases are used to derive private keys for cryptocurrency wallets and other secure applications. By providing word lists for different languages, the project can support a global user base. The code can be used as follows:
+
+```
+val wordListTry = WordList.load("english")
+wordListTry match {
+  case Success(wordList) => println(wordList.words)
+  case Failure(exception) => println(exception.getMessage)
+}
+```
+
+This code loads the English word list and prints its words to the console. If the load fails, it prints the error message.
+## Questions: 
+ 1. What is the purpose of this code?
+   - This code defines a WordList class and an object with a load method that loads a word list from a file based on a language ID.
+
+2. What languages are supported by this code?
+   - This code supports Chinese (simplified and traditional), English, French, Italian, Japanese, Korean, and Spanish.
+
+3. What format are the word lists expected to be in?
+   - The word lists are expected to be in a text file with one word per line, and the delimiter between words is either a space or a specific Japanese character depending on the language.

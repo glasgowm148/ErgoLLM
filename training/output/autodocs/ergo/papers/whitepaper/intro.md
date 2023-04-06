@@ -1,0 +1,16 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/papers/whitepaper/intro.tex)
+
+The code provided is not a functional code but rather an introduction to the Ergo project. The purpose of the Ergo project is to provide a blockchain platform that is secure, decentralized, and efficient for building financial applications. The introduction explains the challenges faced by existing blockchain systems, such as high transaction costs, resource utilization, and storage requirements. Ergo aims to address these challenges by utilizing the UTXO model, which provides a convenient way to implement financial applications covering an overwhelming majority of public blockchain use-cases. 
+
+The introduction also highlights the importance of long-term survivability of blockchain platforms and the need for self-amendable protocols that can adapt to changing environments without the need for trusted parties. Ergo seeks to accomplish this by combining various scientific ideas to fix existing problems and provide a way for further improvements without any breaking changes. 
+
+Overall, the Ergo project aims to provide a blockchain platform that is efficient, secure, and decentralized for building financial applications. The introduction provides a high-level overview of the challenges faced by existing blockchain systems and how Ergo seeks to address these challenges.
+## Questions: 
+ 1. What is the purpose of Ergo and how does it differ from existing blockchain systems?
+- Ergo is designed to provide a way to implement financial applications using the UTXO model, which is simpler for implementing protecting conditions. It aims to address the challenges faced by existing blockchain systems, such as high transaction costs and long-term survivability.
+
+2. What are the resource requirements for using a blockchain without any trust?
+- Participants in a trustless blockchain system must download and process all transactions in the network, which utilizes network and computational resources. They must also keep a significant amount of data in their local storage, some of which must be maintained in memory. Transaction processing consumes resources from hundreds of thousands of computers worldwide, and users pay for these resources through transaction fees.
+
+3. What are some solutions for ensuring the long-term survivability of blockchain systems?
+- Solutions for long-term survivability include light nodes with minimal storage requirements, storage-rent fee components to prevent bloating of full-nodes, and self-amendable protocols that can adapt to changing environments and improve themselves without trusted parties. Ergo seeks to combine various scientific ideas to address these problems and provide a way for further improvements without breaking changes.

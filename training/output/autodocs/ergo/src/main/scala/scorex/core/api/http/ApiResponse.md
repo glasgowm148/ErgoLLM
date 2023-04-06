@@ -1,0 +1,30 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/scorex/core/api/http/ApiResponse.scala)
+
+The `ApiResponse` class in the `scorex.core.api.http` package provides a set of methods to wrap JSON results to a route with a given status code and complete it. The purpose of this class is to simplify the process of returning JSON responses from an HTTP API endpoint. 
+
+The class has several overloaded `apply` methods that take a JSON object, a type that can be encoded to JSON, or a `Future` of either of these. These methods return a `Route` that can be used to complete an HTTP request. The `defaultRoute` method returns a `Route` that completes the request with a default message for the given status code. The `withString` method returns a `Route` that completes the request with a JSON-encoded string. The `withJson` method returns a `Route` that completes the request with a JSON-encoded object. 
+
+The `complete` method is used internally by the other methods to create the final `Route`. It takes a JSON object and checks if it is null. If it is null, it returns a `NotExists` error. Otherwise, it creates an HTTP entity with the JSON object and completes the request with the given status code and the entity. 
+
+The `ApiResponse` object provides several static methods that return a `Route` with a `200 OK` status code. These methods are used to create a successful response with a JSON object, a type that can be encoded to JSON, a `Future` of either of these, an `Either` of a `Throwable` or a JSON object, a map of key-value pairs where the values are JSON objects, or a single key-value pair where the value is a JSON object. 
+
+Overall, the `ApiResponse` class provides a convenient way to create JSON responses for HTTP API endpoints in the `ergo` project. It simplifies the process of encoding objects to JSON and completing HTTP requests with the appropriate status code and entity. 
+
+Example usage:
+
+```scala
+import io.circe.Json
+
+val json: Json = Json.obj("message" -> Json.fromString("Hello, world!"))
+
+val route: Route = ApiResponse(StatusCodes.OK)(json)
+```
+## Questions: 
+ 1. What is the purpose of the `ApiResponse` class?
+- The `ApiResponse` class provides methods to wrap a JSON result to a route with a given status code and complete it.
+
+2. What is the significance of the `Null` json check in the `complete` method?
+- If the JSON result is `Null`, the method returns a `NotExists` error.
+
+3. What is the purpose of the `OK` object in the `ApiResponse` companion object?
+- The `OK` object is an instance of `ApiResponse` with a `StatusCodes.OK` status code, and provides methods to create a route with a JSON result or a future JSON result.

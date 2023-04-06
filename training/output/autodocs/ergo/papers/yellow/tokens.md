@@ -1,0 +1,25 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/papers/yellow/tokens.tex)
+
+The code provided describes the token emission process in the Ergo project. The purpose of this code is to enable the creation and management of new assets (tokens) on the Ergo blockchain. 
+
+The code implements a conservation law that ensures that the sum of monetary values for transaction inputs equals the corresponding sum for outputs. In addition, one output can hold tokens of multiple kinds, with a maximum of four tokens per output (in addition to the main Ergo token). These tokens are stored in the register R3 as a sequence of $\{token\_id: amount\}$ tuples. 
+
+To create a new asset, an item is appended to the dictionary. To avoid collisions, the $token\_id$ of the newly created asset must equal the $id$ of the first input of the generating transaction. This ensures the uniqueness of the tokens. Only one output can contain a new asset, and a transaction may create no more than one new asset.
+
+The validation script ensures that the emission of tokens is controlled and that the sum of tokens in the inputs equals the sum of tokens in the outputs. The script checks that the $id$ of the token being emitted is either present in the inputs or is equal to the $id$ of the first input. This ensures that the emission of tokens is controlled and that no new tokens are created without proper authorization.
+
+Overall, this code enables the creation and management of new assets on the Ergo blockchain. It provides a controlled emission process that ensures the uniqueness and validity of new tokens. The code can be used in various applications that require the creation and management of new assets, such as tokenization of assets, decentralized finance, and gaming. 
+
+Example usage of this code would be creating a new asset for a decentralized finance application. The application would use the Ergo blockchain to create a new asset and manage its emission and circulation. The code would ensure that the emission of the new asset is controlled and that the sum of tokens in the inputs equals the sum of tokens in the outputs. This would provide a secure and transparent way to create and manage new assets on the blockchain.
+## Questions: 
+ 1. What is the purpose of the code?
+    
+    The purpose of the code is to describe the token emission process in the Ergo project, including the conservation law and the storage of token data in register R3.
+
+2. What is the maximum number of tokens per output?
+
+    The maximum number of tokens per output is 4, in addition to the main Ergo token.
+
+3. How is the controlled emission of tokens organized?
+
+    The controlled emission of tokens may be organized by attaching the emission script to the output which contains newly generated $token\_id$.

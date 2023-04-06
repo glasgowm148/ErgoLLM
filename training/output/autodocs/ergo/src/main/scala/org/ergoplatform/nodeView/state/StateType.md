@@ -1,0 +1,20 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/src/main/scala/org/ergoplatform/nodeView/state/StateType.scala)
+
+The code defines a sealed trait `StateType` and two case objects `Utxo` and `Digest` that extend the trait. The trait defines three abstract methods: `stateTypeCode`, `stateTypeName`, and `requireProofs`. The `Utxo` object sets the `stateTypeCode` to 0, `stateTypeName` to "utxo", and `requireProofs` to false. The `Digest` object sets the `stateTypeCode` to 1, `stateTypeName` to "digest", and `requireProofs` to true. 
+
+The `fromCode` method takes a `StateTypeCode` and returns the corresponding `StateType` object. If the code is equal to `Utxo.stateTypeCode`, it returns the `Utxo` object. If the code is equal to `Digest.stateTypeCode`, it returns the `Digest` object. Otherwise, it throws an exception with a message indicating that the state type code is unknown.
+
+The `StateType` trait also defines a method `holdsUtxoSet` that returns `true` if `requireProofs` is `false`, indicating that the UTXO set is fully stored in a mode.
+
+The code also defines two type aliases `UtxoType` and `DigestType` for the `Utxo` and `Digest` objects, respectively. It defines a `values` sequence that contains both `Utxo` and `Digest` objects.
+
+Finally, the code defines a sealed trait `Evidence` that takes two type parameters: `ST` that must be a subtype of `StateType`, and `S` that must be a subtype of `ErgoState[S]`. The trait is sealed, which means that all implementations of the trait must be declared in the same file. The code provides two implicit objects `UtxoEvidence` and `DigestEvidence` that extend the `Evidence` trait with `UtxoType` and `DigestType`, respectively. These objects allow checking the correspondence between concrete instances of `StateType` and `ErgoState`. 
+
+This code is used to define the different types of states that can be used in the Ergo platform. The `StateType` trait defines the common properties of all state types, such as the state type code, name, and whether proofs are required. The `Utxo` and `Digest` objects define the specific properties of each state type. The `fromCode` method allows converting a state type code to the corresponding `StateType` object. The `Evidence` trait and its implicit objects allow checking the correspondence between a state type and an `ErgoState`. This code is used throughout the Ergo project to define and manipulate different types of states.
+## Questions: 
+ 1. What is the purpose of the `StateType` trait and its subclasses?
+- The `StateType` trait and its subclasses define different types of states that can be used in the `ErgoState` class.
+2. What is the significance of the `StateTypeCode` type alias?
+- The `StateTypeCode` type alias is used to represent the code associated with each `StateType` subclass.
+3. What is the purpose of the `Evidence` trait and its subclasses?
+- The `Evidence` trait and its subclasses are used to check the correspondence between concrete instances of `StateType` and `ErgoState`.

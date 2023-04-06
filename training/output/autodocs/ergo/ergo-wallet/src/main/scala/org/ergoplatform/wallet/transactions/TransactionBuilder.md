@@ -1,0 +1,18 @@
+[View code on GitHub](https://github.com/ergoplatform/ergo/ergo-wallet/src/main/scala/org/ergoplatform/wallet/transactions/TransactionBuilder.scala)
+
+The `TransactionBuilder` object contains methods for building unsigned Ergo transactions. The `multiPaymentTransaction` method assembles an unsigned payment transaction with multiple outputs. It takes in an array of input identifiers, a fee amount, a list of payment addresses and corresponding amounts, a change recipient address, a change amount, and the current blockchain height. It returns an unsigned transaction. The `paymentTransaction` method assembles an unsigned payment transaction. It takes in a payment recipient address, a change recipient address, an amount of ERGs to transfer, a fee amount, an amount to return back to the change address, an array of input identifiers, and the current blockchain height. It returns an unsigned transaction.
+
+The `collectOutputTokens` method takes in a sequence of ErgoBoxCandidates and returns a TokensMap. The `collTokensToMap` method takes in a Coll of TokenIds and Longs and returns a Map of ModifierIds and Longs. The `tokensMapToColl` method takes in a TokensMap and returns a Coll of TokenIds and Longs.
+
+The `buildUnsignedTx` method creates an unsigned transaction from given inputs and outputs, adding outputs with miner's fee and change. It runs required checks ensuring that the resulted transaction will be successfully validated by a node. It takes in inputs, data inputs, output candidates, the current height, an optional fee amount to put in a new miner's fee box, which will be created by this method, a change address, a minimum change value to send, a reward delay to encode in the miner's fee box, and a TokensMap of tokens to burn. It returns a Try of an unsigned transaction.
+
+The `EitherOpsFor211` class is an implicit class that provides additional functionality to the Either class. It contains the `mapRight` and `flatMapRight` methods, which apply a function to the right value of an Either or bind a function across the right value of an Either, respectively.
+## Questions: 
+ 1. What is the purpose of the `TransactionBuilder` object?
+- The `TransactionBuilder` object provides functions for assembling unsigned payment transactions with multiple outputs and for creating unsigned transactions from given inputs and outputs with added outputs for miner's fee and change.
+
+2. What is the difference between the `multiPaymentTransaction` and `paymentTransaction` functions?
+- The `multiPaymentTransaction` function assembles unsigned payment transactions with multiple outputs, while the `paymentTransaction` function assembles unsigned payment transactions with a single output.
+
+3. What is the purpose of the `validateStatelessChecks` function?
+- The `validateStatelessChecks` function performs checks to ensure that the inputs, data inputs, and output candidates of a transaction are valid and that the resulting transaction will be successfully validated by a node.
