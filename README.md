@@ -16,6 +16,11 @@ You can use plug in the [Output](#output) files below to get a pre-trained chat-
 
 ### Output
 
-  - [autodocs](training/output/autodocs/) generated using [https://github.com/context-labs/autodoc](github.com/context-labs/autodoc)
+  - [autodocs](training/output/autodocs/) generated using [github.com/context-labs/autodoc](https://github.com/context-labs/autodoc)
 - [docsgpt](training/output/docsgpt/) generated using [github.com/arc53/DocsGPT](https://github.com/arc53/DocsGPT)
 - [langchain-chat](training/output/langchain-chat/) generated using [github.com/hwchase17/chat-langchain](https://github.com/hwchase17/chat-langchain)
+
+## Tutorials
+
+- [Query repositories with AutoDocs](tutorials/running-autodoc.md)
+- [Create a local chatbot with DocsGPT](tutorials/running-autodoc.md)
