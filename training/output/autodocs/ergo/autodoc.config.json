@@ -1,6 +1,6 @@
 {
-  "name": "ergo-python-appkit",
-  "repositoryUrl": "https://github.com/ergo-pad/ergo-python-appkit",
+  "name": "ergo",
+  "repositoryUrl": "https://github.com/ergoplatform/ergo",
   "root": ".",
   "output": "./.",
   "llms": [
