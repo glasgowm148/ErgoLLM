@@ -1,0 +1,37 @@
+[View code on GitHub](https://github.com/ergo-pad/ergo-python-appkit/ergo_python_appkit/ErgoTransaction.py)
+
+The `ErgoTransaction` class is a part of the `ergo-python-appkit` project and provides functionality for building and signing Ergo transactions. 
+
+The class takes an instance of `ErgoAppKit` as an argument in its constructor, which is used to access the necessary methods for building and signing transactions. The `preHeader` attribute is set to the preHeader of the `ErgoAppKit` instance.
+
+The class provides several properties for setting and getting various attributes of the transaction, such as inputs, outputs, fees, and tokens to burn. These properties use getters and setters to ensure that the attributes are properly formatted and validated before being set.
+
+The `unsignedTx` property returns an `UnsignedTransaction` object that is built using the inputs, outputs, fee, change address, tokens to burn, data inputs, and preHeader attributes. This property is used to obtain the unsigned transaction that can be signed later.
+
+The `eip12` property returns a JSON representation of the unsigned transaction using the `unsignedTxToJson` method of the `ErgoAppKit` class. This property is used to obtain the unsigned transaction in a format that can be used with the EIP-12 standard.
+
+The `ergoPaySigningRequest` property returns a signing request for the transaction using the `formErgoPaySigningRequest` method of the `ErgoAppKit` class. This property is used to obtain a signing request that can be used with the ErgoPay protocol.
+
+Overall, the `ErgoTransaction` class provides a convenient way to build and sign Ergo transactions using the `ergo-python-appkit` library. Here is an example of how to use this class:
+
+```
+from ergo_python_appkit import ErgoAppKit
+from ergo_python_appkit import ErgoTransaction
+
+appKit = ErgoAppKit()
+tx = ErgoTransaction(appKit)
+
+# Set transaction attributes
+tx.inputs = [input_box_1, input_box_2]
+tx.outputs = [out_box_1, out_box_2]
+tx.fee = 1000000
+tx.changeAddress = "9fJ6Jg7JZz2JzJzD8Jz2JzJzD8Jz2JzD8Jz2JzD8Jz2JzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz2JzJzD8Jz
+## Questions: 
+ 1. What is the purpose of this code?
+- This code defines a class called `ErgoTransaction` that provides methods for building and signing Ergo transactions using the `ErgoAppKit` library.
+
+2. What are the dependencies of this code?
+- This code depends on the `typing`, `ergo_python_appkit`, and `org.ergoplatform` libraries.
+
+3. What methods are available in the `ErgoTransaction` class?
+- The `ErgoTransaction` class provides methods for building unsigned transactions (`unsignedTx`), converting unsigned transactions to JSON (`eip12`), and creating ErgoPay signing requests (`ergoPaySigningRequest`). It also provides getters and setters for various transaction properties, such as inputs, outputs, fees, and change addresses.
