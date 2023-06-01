@@ -20,7 +20,7 @@ Right now Autodoc only supports OpenAI. Make sure you have have your OpenAI API 
 export OPENAI_API_KEY=<YOUR_KEY_HERE>
 ```
 
-To start the Autodoc query CLI, run the following command from within the directory you want to query (ie [ergo-appkit](ergo-appkit/)
+To start the Autodoc query CLI, run the following command from within the directory you want to query (ie [ergo-appkit](ergo-appkit/))
 
 ```
 doc q

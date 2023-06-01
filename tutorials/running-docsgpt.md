@@ -15,6 +15,12 @@ sed "s/<your_api_key>/${custom_string}/g" docker-compose.yaml
 
 ## Getting Started
 
+Create an `.env` file with your API key by running the following command
+
+```
+echo "OPENAI_API_KEY=<your-api-key>" > .env
+```
+
 Start docker from within the DocsGPT directory
 
 ```
